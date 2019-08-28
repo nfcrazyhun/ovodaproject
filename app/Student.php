@@ -32,8 +32,8 @@ class Student extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function addresses()
+    public function address()
     {
-        return $this->hasMany('App\Address');
+        return $this->hasOne('App\Address');
     }
 }
