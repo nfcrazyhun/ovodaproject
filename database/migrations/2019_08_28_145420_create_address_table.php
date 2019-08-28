@@ -21,6 +21,8 @@ class CreateAddressTable extends Migration
             $table->string('street_name');
             $table->string('street_number');
             $table->integer('zip');
+            $table->string('city');
+            $table->integer('siblings_num');
             $table->timestamps();
 
             $table->foreign('student_id')->references('id')->on('student');
