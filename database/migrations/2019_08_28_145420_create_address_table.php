@@ -14,12 +14,16 @@ class CreateAddressTable extends Migration
     public function up()
     {
         Schema::create('address', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->integer('student_id');
+            $table->engine = 'InnoDB';
+
+            $table->Increments('id');
+            $table->integer('student_id')->unsigned();
             $table->string('street_name');
             $table->string('street_number');
             $table->integer('zip');
             $table->timestamps();
+
+            $table->foreign('student_id')->references('id')->on('student');
         });
     }
 
