@@ -18,7 +18,7 @@ class StudentController extends Controller
 
         //return $students;
 
-        return view('students.index',compact('students'));
+        return view('students.index', compact('students'));
     }
 
     /**
