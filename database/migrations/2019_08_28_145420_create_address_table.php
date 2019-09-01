@@ -14,8 +14,6 @@ class CreateAddressTable extends Migration
     public function up()
     {
         Schema::create('address', function (Blueprint $table) {
-            $table->engine = 'InnoDB';
-
             $table->Increments('id');
             $table->integer('student_id')->unsigned();
             $table->string('street_name');
