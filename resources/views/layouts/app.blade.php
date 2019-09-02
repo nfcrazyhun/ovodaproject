@@ -34,14 +34,15 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
 
+                    <!-- Student links -->
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('students.index') }}">{{ __('Studentos') }}</a>
+                        </li>
+
                     </ul>
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
-
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('students.index') }}">{{ __('Studentos') }}</a>
-                        </li>
 
                         <!-- Authentication Links -->
                         @guest

@@ -34,6 +34,6 @@ class Student extends Model
      */
     public function address()
     {
-        return $this->hasOne('App\Address');
+        return $this->hasMany('App\Address');
     }
 }

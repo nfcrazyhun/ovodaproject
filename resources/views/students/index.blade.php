@@ -2,12 +2,41 @@
 @section('title', '-=app title-=')
 
 @section('content')
-    <div>
-        <p>This is my body content.</p>
+    <h1>Students</h1>
 
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Students</th>
+            <th>Addresses</th>
+        </tr>
+        </thead>
+        <tbody>
         @foreach ($students as $student)
-            <li>{{ $student->first_name }} {{ $student->last_name }}</li>
+            <tr>
+                <td>
+                    <ul>
+                        <li>First name: {{$student->first_name}}</li>
+                        <li>Last name: {{$student->last_name}}</li>
+                        <li>Sign: {{$student->sign}}</li>
+                        <li>Group: {{$student->group}}</li>
+                        <li>Age: {{$student->age}}</li>
+                    </ul>
+                </td>
+                <td>
+                    @foreach($student->address as $a)
+                        <ul>
+                            <li>Street name: {{$a->street_name}}</li>
+                            <li>Street number: {{$a->street_number}}</li>
+                            <li>Zip: {{$a->zip}}</li>
+                            <li>City: {{$a->city}}</li>
+                        </ul>
+                    @endforeach
+                </td>
+            </tr>
         @endforeach
+        </tbody>
+    </table>
 
-    </div>
+
 @stop
