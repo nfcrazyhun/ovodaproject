@@ -11,6 +11,10 @@
 |
 */
 
+use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
+
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -18,4 +22,15 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/students', 'StudentController@index')->name('students.index');
+
+/*
+Route::resources - request cheat sheet:
+    GET /students (index)
+    GET /students/create (create)
+    GET /students/{id} (show)
+    POST /students (store)
+    GET /students/{id}/edit (edit)
+    PATCH /students/create (update)
+    DELETE /students/{id} (destroy)
+ */
+Route::resource('students','StudentController');

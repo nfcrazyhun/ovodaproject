@@ -4,6 +4,8 @@
 @section('content')
     <h1>Students</h1>
 
+    <a href="/students/create">Create New Student</a>
+
     <table class="table table-striped">
         <thead>
         <tr>
