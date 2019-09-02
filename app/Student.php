@@ -27,7 +27,8 @@ class Student extends Model
     /**
      * @var array
      */
-    protected $guarded = [];
+    //protected $guarded = [];
+    protected $fillable = ['first_name','last_name','sign','group','age'];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
