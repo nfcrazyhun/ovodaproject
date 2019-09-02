@@ -38,9 +38,9 @@
                 </td>
                 <td>
                     <ul>
-                        <li>Edit student</li>
-                        <li>Edit address</li>
-                        <li>Add address</li>
+                        <li><a href="{{ route('students.edit', ['id' => 1]) }}">Edit student</a></li>
+                        <li><a href="{{ route('addresses.edit', ['id' => 1]) }}">Edit address</a></li>
+                        <li><a href="{{ route('addresses.create') }}">Add address</a></li>
                     </ul>
                 </td>
             </tr>

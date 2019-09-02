@@ -30,7 +30,8 @@ Route::resources - request cheat sheet:
     GET /students/{id} (show)
     POST /students (store)
     GET /students/{id}/edit (edit)
-    PATCH /students/create (update)
+    PATCH /students/update (update)
     DELETE /students/{id} (destroy)
  */
 Route::resource('students','StudentController');
+Route::resource('addresses','AddressController');
