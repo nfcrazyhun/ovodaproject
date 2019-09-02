@@ -38,8 +38,9 @@
                 </td>
                 <td>
                     <ul>
-                        <li><a href="{{ route('students.edit', ['id' => 1]) }}">Edit student</a></li>
-                        <li><a href="{{ route('addresses.edit', ['id' => 1]) }}">Edit address</a></li>
+                        <li><a href="{{ route('students.show', ['id' => $student->id]) }}">Edit student</a></li>
+                        <li><a href="{{ route('students.edit', ['id' => $student->id]) }}">Edit student</a></li>
+                        <li><a href="{{ route('addresses.edit', ['id' => $student->id]) }}">Edit address</a></li>
                         <li><a href="{{ route('addresses.create') }}">Add address</a></li>
                     </ul>
                 </td>
