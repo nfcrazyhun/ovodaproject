@@ -2,7 +2,7 @@
 @section('title', '-=app title-=')
 
 @section('content')
-    <h1>Create Student</h1>
+    <h1>Create new Student</h1>
 
     <form method="POST" action="/students" class="col-6">
         @csrf
@@ -29,7 +29,7 @@
             <input type="text" name="age" class="form-control" placeholder="Age">
         </div>
 
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" class="btn btn-primary">Create Student</button>
     </form>
 
 @stop

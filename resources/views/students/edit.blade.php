@@ -4,6 +4,7 @@
 @section('content')
     <h1>Edit Student</h1>
 
+    <!--Edit form-->
     <form method="POST" action="/students/{{$student->id}}" class="col-6">
         @csrf
         @method('PATCH')
@@ -31,7 +32,17 @@
             <input type="text" name="age" class="form-control" placeholder="Age" value="{{$student->age}}">
         </div>
 
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" class="btn btn-primary">Update</button>
+    </form>
+
+    <!--delete form-->
+    <form method="POST" action="/students/{{$student->id}}">
+        @csrf
+        @method('DELETE')
+
+        <div class="form-group">
+            <button type="submit" class="btn btn-danger">Delete</button>
+        </div>
     </form>
 
 @stop

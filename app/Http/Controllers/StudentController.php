@@ -83,8 +83,9 @@ class StudentController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Student  $student
+     * @param  \App\Student $student
      * @return \Illuminate\Http\Response
+     * @throws \Exception
      */
     public function destroy(Student $student)
     {
