@@ -4,7 +4,7 @@
 @section('content')
     <h1>Students</h1>
 
-    <a href="/students/create">Create New Student</a>
+    <a href="/students/create"> <button type="button" class="btn btn-primary">Create New Student</button> </a>
 
     <table class="table table-striped">
         <thead>
