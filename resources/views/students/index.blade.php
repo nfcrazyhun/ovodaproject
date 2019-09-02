@@ -9,6 +9,7 @@
         <tr>
             <th>Students</th>
             <th>Addresses</th>
+            <th>Links</th>
         </tr>
         </thead>
         <tbody>
@@ -33,7 +34,15 @@
                         </ul>
                     @endforeach
                 </td>
+                <td>
+                    <ul>
+                        <li>Edit student</li>
+                        <li>Edit address</li>
+                        <li>Add address</li>
+                    </ul>
+                </td>
             </tr>
+
         @endforeach
         </tbody>
     </table>
