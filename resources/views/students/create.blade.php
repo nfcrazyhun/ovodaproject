@@ -4,28 +4,29 @@
 @section('content')
     <h1>Create Student</h1>
 
-    <form class="col-6">
+    <form method="POST" action="/students" class="col-6">
+        @csrf
         <div class="form-row">
             <div class="col">
-                <label for="firstname">First Name</label>
-                <input type="text" class="form-control" id="firstname" placeholder="First name">
+                <label for="first_name">First Name</label>
+                <input type="text" name="first_name" class="form-control" placeholder="First name">
             </div>
             <div class="col">
-                <label for="lastname">Last Name</label>
-                <input type="text" class="form-control" id="lastname" placeholder="Last name">
+                <label for="last_name">Last Name</label>
+                <input type="text" name="last_name" class="form-control" placeholder="Last name">
             </div>
         </div>
         <div class="form-group">
             <label for="sign">Sign</label>
-            <input type="text" class="form-control" id="sign" placeholder="Sign">
+            <input type="text" name="sign" class="form-control" placeholder="Sign">
         </div>
         <div class="form-group">
             <label for="group">Group</label>
-            <input type="text" class="form-control" id="group" placeholder="Group">
+            <input type="text" name="group" class="form-control" placeholder="Group">
         </div>
         <div class="form-group">
             <label for="age">Age</label>
-            <input type="text" class="form-control" id="age" placeholder="Age">
+            <input type="text" name="age" class="form-control" placeholder="Age">
         </div>
 
         <button type="submit" class="btn btn-primary">Submit</button>

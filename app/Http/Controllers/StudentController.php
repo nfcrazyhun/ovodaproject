@@ -37,7 +37,11 @@ class StudentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $input = $request->all();
+
+        Student::create($input);
+
+        return redirect('students');
     }
 
     /**
@@ -48,7 +52,7 @@ class StudentController extends Controller
      */
     public function show(Student $student)
     {
-        //
+        return view('students.show',compact('student'));
     }
 
     /**
@@ -59,7 +63,7 @@ class StudentController extends Controller
      */
     public function edit(Student $student)
     {
-        //
+        return view('students.edit',compact('student'));
     }
 
     /**
@@ -71,7 +75,9 @@ class StudentController extends Controller
      */
     public function update(Request $request, Student $student)
     {
-        //
+        $student->update($request->all());
+
+        return redirect('students');
     }
 
     /**
@@ -82,6 +88,8 @@ class StudentController extends Controller
      */
     public function destroy(Student $student)
     {
-        //
+        $student->delete();
+
+        return redirect('students');
     }
 }
