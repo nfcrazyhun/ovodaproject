@@ -7,6 +7,7 @@ use Faker\Generator as Faker;
 
 $factory->define(Address::class, function (Faker $faker) {
     return [
+        'student_id' => factory(\App\Student::class)->create()->id,
         'street_name'=>$faker->streetName,
         'street_number'=>$faker->numberBetween($min = 1, $max = 100),
         'zip'=>$faker->numberBetween($min = 1000, $max = 9999),
