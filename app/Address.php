@@ -26,7 +26,7 @@ class Address extends Model
     /**
      * @var array
      */
-    protected $guarded = [];
+    //protected $guarded = [];
     protected $fillable = ['student_id','street_name','street_number','zip','city','siblings_num'];
 
     /**
