@@ -40,7 +40,7 @@
     </form>
 
     <!--delete form-->
-    <form method="POST" action="{{ route('addresses.destroy') }}">
+    <form method="POST" action="{{ route('addresses.destroy',['id' => $address->id]) }}">
         @csrf
         @method('DELETE')
 
