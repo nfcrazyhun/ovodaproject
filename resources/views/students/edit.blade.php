@@ -6,7 +6,7 @@
     <h1>Edit Student</h1>
 
     <!--Edit form-->
-    <form method="POST" action="/students/{{$student->id}}" class="col-6">
+    <form method="POST" action="{{ route('students.update',['id' => $student->id]) }}" class="col-6">
         @csrf
         @method('PATCH')
 

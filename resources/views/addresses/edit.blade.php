@@ -6,17 +6,17 @@
     <h1>Edit Student</h1>
 
     <!--Edit form-->
-    <form method="POST" action="/students/{{$address->id}}" class="col-6">
+    <form method="POST" action="{{ route('addresses.update',['id' => $address->id]) }}" class="col-6">
         @csrf
         @method('PATCH')
 
         <div class="form-group">
-            <label for="street_name">First Name</label>
+            <label for="street_name">Street name</label>
             <input type="text" name="street_name" class="form-control" placeholder="Street name"
                    value="{{$address->street_name}}">
         </div>
         <div class="form-group">
-            <label for="street_number">Last Name</label>
+            <label for="street_number">Street number</label>
             <input type="text" name="street_number" class="form-control" placeholder="Street number"
                    value="{{$address->street_number}}">
         </div>

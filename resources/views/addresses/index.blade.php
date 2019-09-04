@@ -29,7 +29,6 @@
                 <td>
                     <ul>
                         <li><a href="{{ route('addresses.edit', ['id' => $address->id]) }}">Edit address</a></li>
-                        <li><a href="{{ route('addresses.destroy', ['id' => $address->id]) }}">Delete address</a></li>
                     </ul>
                 </td>
             </tr>

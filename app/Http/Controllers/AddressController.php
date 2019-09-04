@@ -77,7 +77,7 @@ class AddressController extends Controller
     {
         $address->update($request->all());
 
-        return redirect('address');
+        return redirect('addresses');
     }
 
     /**
