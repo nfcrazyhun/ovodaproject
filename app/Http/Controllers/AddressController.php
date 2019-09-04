@@ -14,9 +14,9 @@ class AddressController extends Controller
      */
     public function index()
     {
-        $students = Address::all();
+        $addresses = Address::all();
 
-        return view('students.index', compact('students'));
+        return view('addresses.index', compact('addresses'));
     }
 
     /**
@@ -91,6 +91,6 @@ class AddressController extends Controller
     {
         $address->delete();
 
-        return redirect('students');
+        return redirect('addresses');
     }
 }
