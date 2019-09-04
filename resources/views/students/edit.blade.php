@@ -1,6 +1,7 @@
 @extends('layouts.app')
 @section('title', '-=app title-=')
 
+<?php /** @var \App\Student $student || Phpstorm Blade autocomplete helper tag*/ ?>
 @section('content')
     <h1>Edit Student</h1>
 
@@ -36,7 +37,7 @@
     </form>
 
     <!--delete form-->
-    <form method="POST" action="/students/{{$student->id}}">
+    <form method="POST" action="{{ route('students.destroy',['id' => $student->id]) }}">
         @csrf
         @method('DELETE')
 

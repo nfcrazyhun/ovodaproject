@@ -1,6 +1,8 @@
 @extends('layouts.app')
 @section('title', '-=app title-=')
 
+<?php /** @var \App\Student $student || Phpstorm Blade autocomplete helper tag*/ ?>
+<?php /** @var \App\Address $address || Phpstorm Blade autocomplete helper tag*/ ?>
 @section('content')
     <h1>Students</h1>
 
@@ -27,13 +29,13 @@
                     </ul>
                 </td>
                 <td>
-                    @foreach($student->address as $a)
+                    @foreach($student->address as $address)
                         <ul>
-                            <li>Street name: {{$a->street_name}}</li>
-                            <li>Street number: {{$a->street_number}}</li>
-                            <li>Zip: {{$a->zip}}</li>
-                            <li>City: {{$a->city}}</li>
-                            <li>Siblings: {{$a->siblings_num}}</li>
+                            <li>Street name: {{$address->street_name}}</li>
+                            <li>Street number: {{$address->street_number}}</li>
+                            <li>Zip: {{$address->zip}}</li>
+                            <li>City: {{$address->city}}</li>
+                            <li>Siblings: {{$address->siblings_num}}</li>
                         </ul>
                     @endforeach
                 </td>

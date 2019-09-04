@@ -1,6 +1,7 @@
 @extends('layouts.app')
 @section('title', '-=app title-=')
 
+<?php /** @var \App\Student $student || Phpstorm Blade autocomplete helper tag*/ ?>
 @section('content')
     <h1>Create new Student</h1>
 
