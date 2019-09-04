@@ -43,9 +43,16 @@
                     <ul>
                         <li><a href="{{ route('students.show', ['id' => $student->id]) }}">Show details</a></li>
                         <li><a href="{{ route('students.edit', ['id' => $student->id]) }}">Edit student</a></li>
-                        <li><a href="{{ route('students.destroy', ['id' => $student->id]) }}">Delete student</a></li>
-                        <li><a href="{{ route('addresses.edit', ['id' => $student->id]) }}">Edit address</a></li>
-                        <li><a href="{{ route('addresses.create') }}">Add address</a></li>
+                        <li>
+                            <form method="POST" id="delete-form" action="{{ route('students.destroy',['id' => $student->id]) }}">
+                                @csrf
+                                @method('DELETE')
+
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-danger btn-sm">Delete student</button>
+                                </div>
+                            </form>
+                        </li>
                     </ul>
                 </td>
             </tr>
