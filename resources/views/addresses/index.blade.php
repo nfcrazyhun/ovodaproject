@@ -1,6 +1,7 @@
 @extends('layouts.app')
 @section('title', '-=app title-=')
 
+<?php /** @var \App\Address $address || Phpstorm Blade autocomplete helper tag*/ ?>
 @section('content')
     <h1>Addresses</h1>
 
@@ -28,6 +29,7 @@
                 </td>
                 <td>
                     <ul>
+                        <li><a href="{{ route('addresses.show', ['id' => $address->id]) }}">Show details</a></li>
                         <li><a href="{{ route('addresses.edit', ['id' => $address->id]) }}">Edit address</a></li>
                     </ul>
                 </td>
