@@ -10,6 +10,8 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $street_name
  * @property string $street_number
  * @property int $zip
+ * @property string $city
+ * @property int $siblings_num
  * @property string $created_at
  * @property string $updated_at
  * @property Student $student
