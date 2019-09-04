@@ -26,7 +26,7 @@ class StudentTableSeeder extends Seeder
             'last_name' => 'Kovács',
         ]);
 
-        //create students with address via they factories
+        //create students with address via them factories
         foreach ($students as $item) {
             factory(\App\Address::class)->create([
                 'student_id' => $item->id,
