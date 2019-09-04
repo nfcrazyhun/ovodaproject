@@ -14,7 +14,9 @@ class AddressController extends Controller
      */
     public function index()
     {
-        //
+        $students = Address::all();
+
+        return view('students.index', compact('students'));
     }
 
     /**
@@ -24,7 +26,7 @@ class AddressController extends Controller
      */
     public function create()
     {
-        //
+        return view('addresses.create');
     }
 
     /**
@@ -35,7 +37,11 @@ class AddressController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $input = $request->all();
+
+        Address::create($input);
+
+        return redirect('addresses');
     }
 
     /**
@@ -46,7 +52,7 @@ class AddressController extends Controller
      */
     public function show(Address $address)
     {
-        //
+        return view('addresses.show',compact('address'));
     }
 
     /**
@@ -57,7 +63,7 @@ class AddressController extends Controller
      */
     public function edit(Address $address)
     {
-        //
+        return view('addresses.edit',compact('address'));
     }
 
     /**
@@ -69,17 +75,22 @@ class AddressController extends Controller
      */
     public function update(Request $request, Address $address)
     {
-        //
+        $address->update($request->all());
+
+        return redirect('address');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Address  $address
+     * @param  \App\Address $address
      * @return \Illuminate\Http\Response
+     * @throws \Exception
      */
     public function destroy(Address $address)
     {
-        //
+        $address->delete();
+
+        return redirect('students');
     }
 }

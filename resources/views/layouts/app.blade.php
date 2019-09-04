@@ -34,9 +34,14 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
 
-                    <!-- Student links -->
+                        <!-- Student links -->
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('students.index') }}">{{ __('Studentos') }}</a>
+                            <a class="nav-link" href="{{ route('students.index') }}">{{ __('Students') }}</a>
+                        </li>
+
+                        <!-- Address links -->
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('addresses.index') }}">{{ __('Addresses') }}</a>
                         </li>
 
                     </ul>
