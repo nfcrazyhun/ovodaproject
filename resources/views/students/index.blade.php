@@ -6,7 +6,8 @@
 @section('content')
     <h1>Students</h1>
 
-    <a href="/students/create"> <button type="button" class="btn btn-primary">Create New Student</button> </a>
+    <a href={{ route('students.create') }}> <button type="button" class="btn btn-primary">Create New Student</button> </a>
+    <a href={{ route('addresses.create') }}> <button type="button" class="btn btn-primary">Create New Address</button> </a>
 
     <table class="table table-striped">
         <thead>
