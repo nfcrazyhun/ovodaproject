@@ -11,12 +11,48 @@ class StudentTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('student')->insert([
+        //define an empty array
+        $students = array();
+
+        //append to array
+        $students[] = factory(App\Student::class)->create([
             'first_name' => 'Péter',
             'last_name' => 'Horváth',
-            'sign'=>'placeholder.png',
-            'group'=>function () {return factory(App\Student::class)->create()->group;},
-            'age'=>function () {return factory(App\Student::class)->create()->age;},
         ]);
+
+        //append to array again
+        $students[] = factory(App\Student::class)->create([
+            'first_name' => 'Júlia',
+            'last_name' => 'Kovács',
+        ]);
+
+        //create students with address via they factories
+        foreach ($students as $item) {
+            factory(\App\Address::class)->create([
+                'student_id' => $item->id,
+            ]);
+        }
+
+
+
+
+
+//        DB::table('student')->insert([
+//            'first_name' => 'Péter',
+//            'last_name' => 'Horváth',
+//            'sign'=>'placeholder.png',
+//            'group'=> 1,
+//            'age'=> 5,
+//        ]);
+//
+//        DB::table('student')->insert([
+//            'first_name' => 'Júlia',
+//            'last_name' => 'Kovács',
+//            'sign'=>'placeholder.png',
+//            'group'=> 1,
+//            'age'=> 6,
+//        ]);
+
+
     }
 }
