@@ -8,7 +8,7 @@
         @csrf
 
         <div class="form-group">
-            <label for="student_id">Street name</label>
+            <label for="student_id">Student_id</label>
             <input type="text" name="student_id" class="form-control" placeholder="student_id">
         </div>
 
