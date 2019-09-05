@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Address;
 use Illuminate\Http\Request;
+use App\Http\Requests\AddressFormRequest;
 
 class AddressController extends Controller
 {
@@ -46,10 +47,10 @@ class AddressController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param AddressFormRequest $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(AddressFormRequest $request)
     {
         $input = $request->all();
 
@@ -83,11 +84,11 @@ class AddressController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Address  $address
+     * @param AddressFormRequest $request
+     * @param  \App\Address $address
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Address $address)
+    public function update(AddressFormRequest $request, Address $address)
     {
         $address->update($request->all());
 

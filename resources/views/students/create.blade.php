@@ -33,4 +33,6 @@
         <button type="submit" class="btn btn-primary">Create Student</button>
     </form>
 
+    @include('layouts.errors')
+
 @stop

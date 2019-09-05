@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Student;
 use Illuminate\Http\Request;
+use App\Http\Requests\StudentFormRequest;
 
 class StudentController extends Controller
 {
@@ -32,14 +33,14 @@ class StudentController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param StudentFormRequest $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StudentFormRequest $request)
     {
-        $input = $request->all();
+        $validatedData = $request->validated();
 
-        Student::create($input);
+        Student::create($validatedData);
 
         return redirect('students');
     }
@@ -69,13 +70,15 @@ class StudentController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Student  $student
+     * @param StudentFormRequest $request
+     * @param  \App\Student $student
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Student $student)
+    public function update(StudentFormRequest $request, Student $student)
     {
-        $student->update($request->all());
+        $validatedData = $request->validated();
+
+        $student->update($validatedData);
 
         return redirect('students');
     }

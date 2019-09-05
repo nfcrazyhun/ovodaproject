@@ -37,4 +37,6 @@
 
     </form>
 
+    @include('layouts.errors')
+
 @stop
