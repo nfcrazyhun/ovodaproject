@@ -30,6 +30,20 @@ class AddressController extends Controller
     }
 
     /**
+     * This method shows a new addres create form with the given id
+     * Show the form for creating a new resource.
+     * The param id = user id
+     *
+     * @param $id
+     * @return \Illuminate\Http\Response
+     */
+    public function addNewAddress()
+    {
+        $id = $_GET['id'];
+        return view('addresses.addnewaddress',compact('id'));
+    }
+
+    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request

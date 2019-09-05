@@ -28,5 +28,6 @@
 
     <li><a href="{{ route('students.edit', ['id' => $student->id]) }}">Edit student</a></li>
     <li><a href="{{ route('addresses.edit', ['id' =>  $student->address()->where('student_id', $student->id)->first()]) }}">Edit address</a></li>
+    <li><a href="{{ route('addnewaddress', ['id' => $student->id]) }}">Add address</a></li>
 
 @stop

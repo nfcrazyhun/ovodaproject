@@ -23,6 +23,8 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+Route::get('/addresses/addnewaddress','AddressController@addnewaddress')->name('addnewaddress');
+
 /*
 Route::resources - request cheat sheet:
     GET /students (index)
