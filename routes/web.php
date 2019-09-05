@@ -21,6 +21,10 @@ Route::get('/', function () {
 
 Auth::routes();
 
+Route::get('/register', function () {
+    return redirect('login');
+});
+
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/addresses/addnewaddress','AddressController@addnewaddress')->name('addnewaddress')->middleware('auth');
@@ -34,6 +38,6 @@ Route::resources - request cheat sheet:
     GET /students/{id}/edit (edit)
     PATCH /students/update (update)
     DELETE /students/{id} (destroy)
- */
+*/
 Route::resource('students','StudentController')->middleware('auth');
 Route::resource('addresses','AddressController')->middleware('auth');
