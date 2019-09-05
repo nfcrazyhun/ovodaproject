@@ -19,7 +19,8 @@
             <tr>
                 <td>
                     <ul>
-                        <li>Student id: {{$address->student_id}}</li>
+                        {{--<li>Student id: {{$address->student_id}}</li>--}}
+                        <li>Student: {{$address->student->first_name}} {{$address->student->last_name}}</li>
                         <li>Street name: {{$address->street_name}}</li>
                         <li>Street number: {{$address->street_number}}</li>
                         <li>Zip: {{$address->zip}}</li>
