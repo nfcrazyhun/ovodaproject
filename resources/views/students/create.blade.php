@@ -5,7 +5,7 @@
 @section('content')
     <h1>Create new Student</h1>
 
-    <form method="POST" action="/students" class="col-6">
+    <form method="POST" action="{{ route('students.store') }}" class="col-6">
         @csrf
         <div class="form-row">
             <div class="col">

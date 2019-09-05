@@ -2,34 +2,39 @@
 @section('title', '-=app title-=')
 
 @section('content')
-    <h1>Create new Student</h1>
+    <h1>Create new address</h1>
 
-    <form method="POST" action="/addresses" class="col-6">
+    <form method="POST" action="{{ route('addresses.store') }}" class="col-6">
         @csrf
-        <div class="form-row">
-            <div class="col">
-                <label for="first_name">First Name</label>
-                <input type="text" name="first_name" class="form-control" placeholder="First name">
-            </div>
-            <div class="col">
-                <label for="last_name">Last Name</label>
-                <input type="text" name="last_name" class="form-control" placeholder="Last name">
-            </div>
-        </div>
+
         <div class="form-group">
-            <label for="sign">Sign</label>
-            <input type="text" name="sign" class="form-control" placeholder="Sign">
-        </div>
-        <div class="form-group">
-            <label for="group">Group</label>
-            <input type="text" name="group" class="form-control" placeholder="Group">
-        </div>
-        <div class="form-group">
-            <label for="age">Age</label>
-            <input type="text" name="age" class="form-control" placeholder="Age">
+            <label for="student_id">Street name</label>
+            <input type="text" name="student_id" class="form-control" placeholder="student_id">
         </div>
 
-        <button type="submit" class="btn btn-primary">Create Student</button>
+        <div class="form-group">
+            <label for="street_name">Street name</label>
+            <input type="text" name="street_name" class="form-control" placeholder="Street name">
+        </div>
+        <div class="form-group">
+            <label for="street_number">Street number</label>
+            <input type="text" name="street_number" class="form-control" placeholder="Street number">
+        </div>
+        <div class="form-group">
+            <label for="zip">Zip</label>
+            <input type="text" name="zip" class="form-control" placeholder="Zip">
+        </div>
+        <div class="form-group">
+            <label for="city">City</label>
+            <input type="text" name="city" class="form-control" placeholder="City">
+        </div>
+        <div class="form-group">
+            <label for="siblings_num">Siblings</label>
+            <input type="text" name="siblings_num" class="form-control" placeholder="Number of siblings">
+        </div>
+
+        <button type="submit" class="btn btn-primary">Create</button>
+
     </form>
 
 @stop
