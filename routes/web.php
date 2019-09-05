@@ -23,7 +23,7 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/addresses/addnewaddress','AddressController@addnewaddress')->name('addnewaddress');
+Route::get('/addresses/addnewaddress','AddressController@addnewaddress')->name('addnewaddress')->middleware('auth');
 
 /*
 Route::resources - request cheat sheet:
@@ -35,5 +35,5 @@ Route::resources - request cheat sheet:
     PATCH /students/update (update)
     DELETE /students/{id} (destroy)
  */
-Route::resource('students','StudentController');
-Route::resource('addresses','AddressController');
+Route::resource('students','StudentController')->middleware('auth');
+Route::resource('addresses','AddressController')->middleware('auth');
