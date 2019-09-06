@@ -28,7 +28,7 @@ class AddressFormRequest extends FormRequest
             'street_number' => 'required|integer',
             'zip' => 'required|integer|min:1000|max:9999',
             'city' => 'required',
-            'siblings_num' => 'required',
+            'siblings_num' => 'required|integer',
         ];
     }
 }

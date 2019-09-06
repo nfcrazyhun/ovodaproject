@@ -10,24 +10,29 @@
         <div class="form-row">
             <div class="col">
                 <label for="first_name">First Name</label>
-                <input type="text" name="first_name" class="form-control" placeholder="First name">
+                <input type="text" name="first_name" class="form-control" placeholder="First name"
+                       value="{{ old('first_name') }}" >
             </div>
             <div class="col">
                 <label for="last_name">Last Name</label>
-                <input type="text" name="last_name" class="form-control" placeholder="Last name">
+                <input type="text" name="last_name" class="form-control" placeholder="Last name"
+                       value="{{ old('last_name') }}" >
             </div>
         </div>
         <div class="form-group">
             <label for="sign">Sign</label>
-            <input type="text" name="sign" class="form-control" placeholder="Sign">
+            <input type="text" name="sign" class="form-control" placeholder="Sign"
+                   value="{{ old('sign') }}" >
         </div>
         <div class="form-group">
             <label for="group">Group</label>
-            <input type="text" name="group" class="form-control" placeholder="Group">
+            <input type="text" name="group" class="form-control" placeholder="Group"
+                   value="{{ old('group') }}" >
         </div>
         <div class="form-group">
             <label for="age">Age</label>
-            <input type="text" name="age" class="form-control" placeholder="Age">
+            <input type="text" name="age" class="form-control" placeholder="Age"
+                   value="{{ old('age') }}" >
         </div>
 
         <button type="submit" class="btn btn-primary">Create Student</button>
