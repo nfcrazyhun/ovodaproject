@@ -23,7 +23,7 @@ class CreateAddressTable extends Migration
             $table->integer('siblings_num');
             $table->timestamps();
 
-            $table->foreign('student_id')->references('id')->on('student');
+            $table->foreign('student_id')->references('id')->on('student')->onDelete('cascade');;
         });
     }
 
