@@ -1,26 +1,22 @@
 @extends('layouts.app')
 @section('title', '-=app title-=')
 
-<?php /** @var \App\Student $name || Phpstorm Blade autocomplete helper tag*/ ?>
+<?php /** @var \App\Student $name || Phpstorm Blade autocomplete helper tag */ ?>
 @section('content')
     <h1>Create new address</h1>
 
     <form method="POST" action="{{ route('addresses.store') }}" class="col-6">
         @csrf
 
-        <label for="student_id">Student id</label>
+        <div class="form-group">
+            <label for="student_id">Student id</label>
             <select name="student_id" class="custom-select">
                 <option selected>Choose a student which doesn't have address...</option>
                 @foreach($names as $name)
                     <option value="{{$name->id}}">{{$name->first_name}} {{$name->last_name}}</option>
                 @endforeach
             </select>
-
-
-        {{--<div class="form-group">--}}
-            {{--<label for="student_id">Student_id</label>--}}
-            {{--<input type="text" name="student_id" class="form-control" placeholder="student_id">--}}
-        {{--</div>--}}
+        </div>
 
         <div class="form-group">
             <label for="street_name">Street name</label>
