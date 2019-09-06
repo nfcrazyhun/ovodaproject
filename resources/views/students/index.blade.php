@@ -24,7 +24,7 @@
                     <ul>
                         <li>First name: {{$student->first_name}}</li>
                         <li>Last name: {{$student->last_name}}</li>
-                        <li>Sign: {{$student->sign}}</li>
+                        <li>Sign: <img src="{{ asset("/images/".$student->sign)}}" height="100" width="100" title="{{$student->sign}}"></li>
                         <li>Group: {{$student->group}}</li>
                         <li>Age: {{$student->age}}</li>
                     </ul>

@@ -17,7 +17,7 @@ class CreateStudentTable extends Migration
             $table->Increments('id');
             $table->string('first_name');
             $table->string('last_name');
-            $table->string('sign');
+            $table->string('sign')->default('placeholder.png');
             $table->string('group');
             $table->integer('age');
             $table->timestamps();

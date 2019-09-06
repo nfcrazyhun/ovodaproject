@@ -9,7 +9,6 @@ $factory->define(Student::class, function (Faker $faker) {
     return [
         'first_name'=>$faker->firstName,
         'last_name'=>$faker->lastName,
-        'sign'=>'placeholder.png',
         'group'=>$faker->numberBetween($min = 1, $max = 3),
         'age'=>$faker->numberBetween($min = 4, $max = 7),
     ];
