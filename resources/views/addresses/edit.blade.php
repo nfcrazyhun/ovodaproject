@@ -3,7 +3,7 @@
 
 <?php /** @var \App\Address $address || Phpstorm Blade autocomplete helper tag*/ ?>
 @section('content')
-    <h1>Edit Student</h1>
+    <h1>Edit Address</h1>
 
     <!--Edit form-->
     <form method="POST" action="{{ route('addresses.update',['id' => $address->id]) }}" class="col-6">
