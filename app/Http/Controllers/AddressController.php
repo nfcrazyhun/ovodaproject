@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Address;
+use App\Student;
+use function foo\func;
 use Illuminate\Http\Request;
 use App\Http\Requests\AddressFormRequest;
 
@@ -27,7 +29,13 @@ class AddressController extends Controller
      */
     public function create()
     {
-        return view('addresses.create');
+        //get all values from student_id column
+        $addresses = Address::all()->pluck('student_id')->toArray();
+
+        //get a list of all student which doesnt address
+        $names = Student::whereNotIn('id',$addresses)->get();
+
+        return view('addresses.create',compact('names'));
     }
 
     /**
