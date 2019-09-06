@@ -26,7 +26,7 @@ class StudentFormRequest extends FormRequest
         return [
             'first_name' => 'required|min:3',
             'last_name' => 'required|min:3',
-            'sign' => 'required|min:3',
+            'sign' => 'required',
             'group' => 'required|integer|min:1',
             'age' => 'required|integer|min:1',
         ];

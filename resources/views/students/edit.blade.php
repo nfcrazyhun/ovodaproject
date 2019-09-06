@@ -24,7 +24,7 @@
         </div>
         <div class="form-group">
             <label for="sign">Sign</label>
-            <input type="text" name="sign" class="form-control" placeholder="Sign"
+            <input type="file" name="sign" class="form-control" placeholder="Sign"
                    value="{{ old('sign',$student->sign) }}" >
         </div>
         <div class="form-group">
