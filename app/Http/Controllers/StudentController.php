@@ -41,6 +41,15 @@ class StudentController extends Controller
     {
         $validatedData = $request->validated();
 
+        // Handle the user upload of avatar
+        if($request->hasFile('sign')){
+            $avatar = $request->file('sign');
+            $filename = time() . '.' . $avatar->getClientOriginalExtension();
+            Image::make($avatar)->resize(100, 100)->save( public_path().'/images/' . $filename );
+
+            $validatedData['sign']=$filename;
+        }
+
         Student::create($validatedData);
 
         return redirect('students');
@@ -77,6 +86,9 @@ class StudentController extends Controller
      */
     public function update(StudentFormRequest $request, Student $student)
     {
+        $validatedData = $request->validated();
+
+
         // Handle the user upload of avatar
         if($request->hasFile('sign')){
             $avatar = $request->file('sign');
@@ -84,9 +96,7 @@ class StudentController extends Controller
             Image::make($avatar)->resize(100, 100)->save( public_path().'/images/' . $filename );
 
             $validatedData['sign']=$filename;
-            dd($validatedData);
         }
-        $validatedData = $request->validated();
 
         $student->update($validatedData);
 
