@@ -21,36 +21,36 @@
         @foreach ($students as $student)
             <tr>
                 <td>
-                    <ul>
+                    <ul type="none">
                         <li>First name: {{$student->first_name}}</li>
                         <li>Last name: {{$student->last_name}}</li>
                         <li>Sign: <img src="{{ asset("/images/".$student->sign)}}" height="100" width="100" title="{{$student->sign}}"></li>
                         <li>Group: {{$student->group}}</li>
-                        <li>Age: {{$student->age}}</li>
+                        {{--<li>Age: {{$student->age}}</li>--}}
                     </ul>
                 </td>
                 <td>
                     @foreach($student->address as $address)
-                        <ul>
-                            <li>Street name: {{$address->street_name}}</li>
-                            <li>Street number: {{$address->street_number}}</li>
-                            <li>Zip: {{$address->zip}}</li>
-                            <li>City: {{$address->city}}</li>
+                        <ul type="none">
+                            {{--<li>Street name: {{$address->street_name}}</li>--}}
+                            {{--<li>Street number: {{$address->street_number}}</li>--}}
+                            {{--<li>Zip: {{$address->zip}}</li>--}}
+                            {{--<li>City: {{$address->city}}</li>--}}
                             <li>Siblings: {{$address->siblings_num}}</li>
                         </ul>
                     @endforeach
                 </td>
                 <td>
-                    <ul>
-                        <li><a href="{{ route('students.show', ['id' => $student->id]) }}">Show details</a></li>
-                        <li><a href="{{ route('students.edit', ['id' => $student->id]) }}">Edit student</a></li>
+                    <ul type="none">
+                        <li><a href="{{ route('students.show', ['id' => $student->id]) }}" class="btn btn-primary btn-sm">📇 Show details</a></li>
+                        <li><a href="{{ route('students.edit', ['id' => $student->id]) }}" class="btn btn-warning btn-sm">⚙ Edit student</a></li>
                         <li>
-                            <form method="POST" id="delete-form" action="{{ route('students.destroy',['id' => $student->id]) }}">
+                            <form class="deleteo" method="POST" id="delete-form" action="{{ route('students.destroy',['id' => $student->id]) }}">
                                 @csrf
                                 @method('DELETE')
 
                                 <div class="form-group">
-                                    <button type="submit" class="btn btn-danger btn-sm">Delete student</button>
+                                    <button type="submit" class="btn btn-danger btn-sm" onclick="return myFunction();">❌ Delete student</button>
                                 </div>
                             </form>
                         </li>
@@ -64,5 +64,11 @@
 
     {{ $students->links() }}
 
+    <script>
+        function myFunction() {
+            if(!confirm("Are You Sure to delete this"))
+                event.preventDefault();
+        }
+    </script>
 
 @stop
