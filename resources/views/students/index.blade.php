@@ -62,5 +62,7 @@
         </tbody>
     </table>
 
+    {{ $students->links() }}
+
 
 @stop

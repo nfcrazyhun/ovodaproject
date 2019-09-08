@@ -40,5 +40,6 @@
         </tbody>
     </table>
 
+    {{ $addresses->links() }}
 
 @stop
