@@ -34,15 +34,19 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
 
-                        <!-- Student links -->
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('students.index') }}">{{ __('Students') }}</a>
-                        </li>
+                        @if (Auth::check())
+                            <!-- show logged in navbar-->
+                            <!-- Student links -->
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('students.index') }}">{{ __('Students') }}</a>
+                            </li>
 
-                        <!-- Address links -->
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('addresses.index') }}">{{ __('Addresses') }}</a>
-                        </li>
+                            <!-- Address links -->
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('addresses.index') }}">{{ __('Addresses') }}</a>
+                            </li>
+                        @endif
+
 
                     </ul>
 
