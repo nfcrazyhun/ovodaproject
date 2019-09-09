@@ -31,6 +31,25 @@ php artisan migrate:fresh --seed
 
 (Optional) Create a virtualhost to this project.
 
+To generate dummy data, open tinner first:
+```
+php artisan tinker
+```
+To generate 4 student, insert:
+```
+factory(App\Student::class, 4)->create();
+```
+
+Or generate 3 students with addresses, insert:
+```
+factory(App\Student::class, 3)->create()->each(
+    function($item) {
+        factory(App\Address::class)->create(['student_id' => $item->id]);
+    }
+);
+```
+
+
 ###Advanced debug with Telescope
 
 <p align="center"><img src="https://res.cloudinary.com/dtfbvvkyp/image/upload/v1539108489/telescope-logo.svg"></p>
