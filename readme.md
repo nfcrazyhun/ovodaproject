@@ -1,5 +1,11 @@
 <p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg"></p>
 
+This app made in with the following versions:
+
+- Laravel 5.8
+- PHP 7.3.9
+- MySQL 8.0.17
+
 ##Quick start guide
 
 Clone this repository
