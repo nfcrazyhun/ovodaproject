@@ -18,14 +18,14 @@
         @foreach ($addresses as $address)
             <tr>
                 <td>
-                    <ul>
+                    <ul class="list-group">
                         {{--<li>Student id: {{$address->student_id}}</li>--}}
-                        <li>Student: {{$address->student->first_name}} {{$address->student->last_name}}</li>
-                        <li>Street name: {{$address->street_name}}</li>
-                        <li>Street number: {{$address->street_number}}</li>
-                        <li>Zip: {{$address->zip}}</li>
-                        <li>City: {{$address->city}}</li>
-                        <li>Siblings: {{$address->siblings_num}}</li>
+                        <li class="list-group-item list-group-item-primary">Student: {{$address->student->first_name}} {{$address->student->last_name}}</li>
+                        <li class="list-group-item">Street name: {{$address->street_name}}</li>
+                        <li class="list-group-item">Street number: {{$address->street_number}}</li>
+                        <li class="list-group-item">Zip: {{$address->zip}}</li>
+                        <li class="list-group-item">City: {{$address->city}}</li>
+                        <li class="list-group-item">Siblings: {{$address->siblings_num}}</li>
                     </ul>
                 </td>
                 <td>

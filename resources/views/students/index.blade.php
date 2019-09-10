@@ -21,22 +21,23 @@
         @foreach ($students as $student)
             <tr>
                 <td>
-                    <ul type="none">
-                        <li>First name: {{$student->first_name}}</li>
-                        <li>Last name: {{$student->last_name}}</li>
-                        <li>Sign: <img src="{{ asset("/images/".$student->sign)}}" height="100" width="100" title="{{$student->sign}}"></li>
-                        <li>Group: {{$student->group}}</li>
+                    <ul class="list-group">
+                        <li class="list-group-item list-group-item-primary">Name: {{$student->first_name}} {{$student->last_name}}</li>
+                        {{--<li>First name: {{$student->first_name}}</li>--}}
+                        {{--<li>Last name: {{$student->last_name}}</li>--}}
+                        <li class="list-group-item">Sign: <img src="{{ asset("/images/".$student->sign)}}" height="100" width="100" title="{{$student->sign}}"></li>
+                        <li class="list-group-item">Group: {{$student->group}}</li>
                         {{--<li>Age: {{$student->age}}</li>--}}
                     </ul>
                 </td>
                 <td>
                     @foreach($student->address as $address)
-                        <ul type="none">
+                        <ul class="list-group">
                             {{--<li>Street name: {{$address->street_name}}</li>--}}
                             {{--<li>Street number: {{$address->street_number}}</li>--}}
                             {{--<li>Zip: {{$address->zip}}</li>--}}
                             {{--<li>City: {{$address->city}}</li>--}}
-                            <li>Siblings: {{$address->siblings_num}}</li>
+                            <li class="list-group-item">Siblings: {{$address->siblings_num}}</li>
                         </ul>
                     @endforeach
                 </td>
