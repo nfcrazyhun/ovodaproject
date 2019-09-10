@@ -28,7 +28,7 @@ php artisan key:generate
 
 Change your database credentials
 
-Create a database name it to: ovoda_db
+Create a database name it to: ovoda_db ; Collation: utf8mb4_unicode_ci
 
 Set up database table with demo datas
 ```
