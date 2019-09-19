@@ -148,6 +148,7 @@ class AddressTest extends TestCase
         //try to modify but cot redirected
         $this->patch('/addresses/'.$address->id, $address->toArray())->assertStatus(302);
     }
+
     /** @test  */
     public function test_quest_cannot_delete_address()
     {
