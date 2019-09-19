@@ -109,4 +109,63 @@ class AddressTest extends TestCase
 
         $this->assertDatabaseMissing('address', ['id' => $address->id]);
     }
+
+    /** @test  */
+    public function test_guest_cannot_create_an_address()
+    {
+        //guest got redirected
+        $this->get('/addresses/create')->assertStatus(302);
+    }
+
+    /** @test  */
+    public function test_guest_cannot_show_an_address()
+    {
+        //create a student
+        /** @var \App\Student $student | typehinting */
+        $student = factory(Student::class)->create();
+
+        //create an address with the student's id
+        /** @var \App\Address $address | typehinting */
+        $address = factory(Address::class)->create(['student_id' => $student->id]);
+
+        //guest got redirected
+        $this->get('/addresses/'.$address->id)->assertStatus(302);
+    }
+
+    /** @test  */
+    public function test_guest_cannot_modify_an_address()
+    {
+        //create a student
+        /** @var \App\Student $student | typehinting */
+        $student = factory(Student::class)->create();
+
+        //create an address with the student's id
+        /** @var \App\Address $address | typehinting */
+        $address = factory(Address::class)->create(['student_id' => $student->id]);
+
+        $address->street_name = 'dinaladinn';
+
+        //try to modify but cot redirected
+        $this->patch('/addresses/'.$address->id, $address->toArray())->assertStatus(302);
+    }
+    /** @test  */
+    public function test_quest_cannot_delete_address()
+    {
+        //create a student
+        /** @var \App\Student $student | typehinting */
+        $student = factory(Student::class)->create();
+
+        //create an address with the student's id
+        /** @var \App\Address $address | typehinting */
+        $address = factory(Address::class)->create(['student_id' => $student->id]);
+
+        $this->assertDatabaseHas('address', ['student_id' => $student->id]);
+
+        //guest got redirected
+        $this->delete('/addresses/'.$address->id)->assertRedirect();
+
+        //check if is no deletion happened
+        $this->assertDatabaseHas('address', ['id' => $address->id]);
+    }
+
 }
