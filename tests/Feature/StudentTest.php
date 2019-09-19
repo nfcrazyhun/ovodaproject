@@ -14,8 +14,10 @@ class StudentTest extends TestCase
      * @return void
      */
 
-    public function testExample()
+    public function test_Student_Example()
     {
+        //use RefreshDatabase;
+
         $response = $this->get('/');
 
         $response->assertStatus(200);
