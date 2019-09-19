@@ -93,7 +93,7 @@ class StudentTest extends TestCase
 
         $this->post('/students',$student->toArray());
 
-        $this->assertDatabaseHas('student',['first_name' => 'acme']);
+        $this->assertDatabaseHas('student',['first_name' => $student->first_name]);
 
         /** @var \App\Address $address | typehinting */
         $address = factory(Address::class)->create(['student_id' => $student->id]);
