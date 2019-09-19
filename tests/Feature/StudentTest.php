@@ -70,12 +70,13 @@ class StudentTest extends TestCase
         $user = factory(User::class)->create();
         //login with it
         $this->actingAs($user);
+        /** @var \App\Student $student | typehinting */
         //create a student instance
         $student = factory(Student::class)->create(['first_name' => 'acme']);
         //create a new student with the necessary data
         $this->post('/students',$student->toArray());
         //then it should be in the database
-        $this->assertDatabaseHas('student',['first_name' => 'acme']);
+        $this->assertDatabaseHas('student',['first_name' => $student->first_name]);
 
     }
 
@@ -128,9 +129,24 @@ class StudentTest extends TestCase
         /** @var \App\Student $student | typehinting */
         $student = factory(Student::class)->create(['first_name' => 'delta']);
 
-        $this->delete('/students/'.$student->id, $student->toArray());
+        $this->delete('/students/'.$student->id);
 
         $this->assertDatabaseMissing('student',['first_name' => 'delta']);
 
     }
+
+    /** @test */
+    public function test_user_can_show_a_student()
+    {
+        //create and login a user
+        $user = factory(User::class)->create();
+        $this->actingAs($user);
+
+        /** @var \App\Student $student | typehinting */
+        $student = factory(Student::class)->create(['first_name' => 'quadrofolioli']);
+
+        $this->get('/students/'.$student->id)->assertSee('quadrofolioli');
+    }
+
+
 }
