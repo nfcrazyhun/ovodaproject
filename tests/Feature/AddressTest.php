@@ -111,7 +111,8 @@ class AddressTest extends TestCase
         /** @var \App\Address $address | typehinting */
         $address = factory(Address::class)->make(['student_id' => $student->id, 'street_name' => '']);
 
-        $this->post('/addresses',$address->toArray());
+        $response = $this->post('/addresses',$address->toArray());
+        $response->assertSessionHasErrors('street_name');
 
         //then it should be in the database
         $this->assertCount(0, Address::all() );
@@ -131,7 +132,8 @@ class AddressTest extends TestCase
         /** @var \App\Address $address | typehinting */
         $address = factory(Address::class)->make(['student_id' => $student->id, 'street_number' => '']);
 
-        $this->post('/addresses',$address->toArray());
+        $response = $this->post('/addresses',$address->toArray());
+        $response->assertSessionHasErrors('street_number');
 
         //then it should be in the database
         $this->assertCount(0, Address::all() );
@@ -150,8 +152,8 @@ class AddressTest extends TestCase
         /** @var \App\Address $address | typehinting */
         $address = factory(Address::class)->make(['student_id' => $student->id, 'street_number' => '3/b' ]);
 
-        $this->post('/addresses',$address->toArray());
-
+        $response = $this->post('/addresses',$address->toArray());
+        $response->assertSessionHasNoErrors();
 
         //then it should be in the database
         $this->assertCount(1, Address::all() );
@@ -171,8 +173,8 @@ class AddressTest extends TestCase
         /** @var \App\Address $address | typehinting */
         $address = factory(Address::class)->make(['student_id' => $student->id, 'zip' => 1 ]);
 
-        $this->post('/addresses',$address->toArray());
-
+        $response = $this->post('/addresses',$address->toArray());
+        $response->assertSessionHasErrors('zip');
 
         //then it should be in the database
         $this->assertCount(0, Address::all() );
@@ -191,7 +193,8 @@ class AddressTest extends TestCase
         /** @var \App\Address $address | typehinting */
         $address = factory(Address::class)->make(['student_id' => $student->id, 'zip' => Str::random(16) ]);
 
-        $this->post('/addresses',$address->toArray());
+        $response = $this->post('/addresses',$address->toArray());
+        $response->assertSessionHasErrors('zip');
 
         //then it should be in the database
         $this->assertCount(0, Address::all() );
@@ -210,7 +213,8 @@ class AddressTest extends TestCase
         /** @var \App\Address $address | typehinting */
         $address = factory(Address::class)->make(['student_id' => $student->id, 'zip' => 999 ]);
 
-        $this->post('/addresses',$address->toArray());
+        $response = $this->post('/addresses',$address->toArray());
+        $response->assertSessionHasErrors('zip');
 
         //then it should be in the database
         $this->assertCount(0, Address::all() );
@@ -229,7 +233,8 @@ class AddressTest extends TestCase
         /** @var \App\Address $address | typehinting */
         $address = factory(Address::class)->make(['student_id' => $student->id, 'zip' => 10000 ]);
 
-        $this->post('/addresses',$address->toArray());
+        $response = $this->post('/addresses',$address->toArray());
+        $response->assertSessionHasErrors('zip');
 
         //then it should be in the database
         $this->assertCount(0, Address::all() );
@@ -249,7 +254,8 @@ class AddressTest extends TestCase
         /** @var \App\Address $address | typehinting */
         $address = factory(Address::class)->make(['student_id' => $student->id, 'city' => '' ]);
 
-        $this->post('/addresses',$address->toArray());
+        $response = $this->post('/addresses',$address->toArray());
+        $response->assertSessionHasErrors('city');
 
         //then it should be in the database
         $this->assertCount(0, Address::all() );
@@ -269,7 +275,8 @@ class AddressTest extends TestCase
         /** @var \App\Address $address | typehinting */
         $address = factory(Address::class)->make(['student_id' => $student->id, 'siblings_num' => '' ]);
 
-        $this->post('/addresses',$address->toArray());
+        $response = $this->post('/addresses',$address->toArray());
+        $response->assertSessionHasErrors('siblings_num');
 
         //then it should be in the database
         $this->assertCount(0, Address::all() );
@@ -288,7 +295,8 @@ class AddressTest extends TestCase
         /** @var \App\Address $address | typehinting */
         $address = factory(Address::class)->make(['student_id' => $student->id, 'siblings_num' => Str::random(16) ]);
 
-        $this->post('/addresses',$address->toArray());
+        $response = $this->post('/addresses',$address->toArray());
+        $response->assertSessionHasErrors('siblings_num');
 
         //then it should be in the database
         $this->assertCount(0, Address::all() );
@@ -307,7 +315,8 @@ class AddressTest extends TestCase
         /** @var \App\Address $address | typehinting */
         $address = factory(Address::class)->make(['student_id' => $student->id, 'siblings_num' => 128 ]);
 
-        $this->post('/addresses',$address->toArray());
+        $response = $this->post('/addresses',$address->toArray());
+        $response->assertSessionHasErrors('siblings_num');
 
         //then it should be in the database
         $this->assertCount(0, Address::all() );

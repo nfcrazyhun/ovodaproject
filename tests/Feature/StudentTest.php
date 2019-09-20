@@ -87,7 +87,9 @@ class StudentTest extends TestCase
         /** @var \App\Student $student | typehinting */
         $student = factory(Student::class)->make(['first_name' => '']);
 
-        $this->post('/students',$student->toArray());
+        $response = $this->post('/students',$student->toArray());
+        $response->assertSessionHasErrors('first_name');
+
         //then it should be in the database
         $this->assertCount(0, Student::all() );
     }
@@ -100,7 +102,8 @@ class StudentTest extends TestCase
         /** @var \App\Student $student | typehinting */
         $student = factory(Student::class)->make(['first_name' => Str::random(2)]);
 
-        $this->post('/students',$student->toArray());
+        $response = $this->post('/students',$student->toArray());
+        $response->assertSessionHasErrors('first_name');
 
         $this->assertCount(0, Student::all() );
     }
@@ -114,7 +117,9 @@ class StudentTest extends TestCase
         /** @var \App\Student $student | typehinting */
         $student = factory(Student::class)->make(['last_name' => '']);
 
-        $this->post('/students',$student->toArray());
+        $response = $this->post('/students',$student->toArray());
+        $response->assertSessionHasErrors('last_name');
+
         //then it should be in the database
         $this->assertCount(0, Student::all() );
     }
@@ -127,7 +132,8 @@ class StudentTest extends TestCase
         /** @var \App\Student $student | typehinting */
         $student = factory(Student::class)->make(['last_name' => Str::random(2)]);
 
-        $this->post('/students',$student->toArray());
+        $response = $this->post('/students',$student->toArray());
+        $response->assertSessionHasErrors('last_name');
 
         $this->assertCount(0, Student::all() );
     }
@@ -141,7 +147,9 @@ class StudentTest extends TestCase
         /** @var \App\Student $student | typehinting */
         $student = factory(Student::class)->make(['group' => '']);
 
-        $this->post('/students',$student->toArray());
+        $response = $this->post('/students',$student->toArray());
+        $response->assertSessionHasErrors('group');
+
         //then it should be in the database
         $this->assertCount(0, Student::all() );
     }
@@ -153,9 +161,11 @@ class StudentTest extends TestCase
         $this->actingAsUser();
 
         /** @var \App\Student $student | typehinting */
-        $student = factory(Student::class)->make(['group' => '']);
+        $student = factory(Student::class)->make(['age' => '']);
 
-        $this->post('/students',$student->toArray());
+        $response = $this->post('/students',$student->toArray());
+        $response->assertSessionHasErrors('age');
+
         //then it should be in the database
         $this->assertCount(0, Student::all() );
     }
