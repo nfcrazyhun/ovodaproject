@@ -60,9 +60,9 @@ class AddressController extends Controller
      */
     public function store(AddressFormRequest $request)
     {
-        $input = $request->all();
+        $validatedData = $request->validated();
 
-        Address::create($input);
+        Address::create($validatedData);
 
         return redirect('addresses');
     }
@@ -98,7 +98,9 @@ class AddressController extends Controller
      */
     public function update(AddressFormRequest $request, Address $address)
     {
-        $address->update($request->all());
+        $validatedData = $request->validated();
+
+        $address->update($validatedData);
 
         return redirect('addresses');
     }

@@ -24,11 +24,12 @@ class AddressFormRequest extends FormRequest
     public function rules()
     {
         return [
+            'student_id' => '',
             'street_name' => 'required',
-            'street_number' => 'required|integer|max:100000',
+            'street_number' => 'required',
             'zip' => 'required|integer|min:1000|max:9999',
             'city' => 'required',
-            'siblings_num' => 'required|integer',
+            'siblings_num' => 'required|integer|max:127',
         ];
     }
 }
