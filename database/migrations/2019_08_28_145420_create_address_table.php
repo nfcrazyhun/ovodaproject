@@ -17,7 +17,7 @@ class CreateAddressTable extends Migration
             $table->Increments('id');
             $table->unsignedInteger('student_id');
             $table->string('street_name');
-            $table->unsignedInteger('street_number');
+            $table->string('street_number');
             $table->unsignedInteger('zip');
             $table->string('city');
             $table->unsignedInteger('siblings_num');
