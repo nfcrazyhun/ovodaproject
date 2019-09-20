@@ -36,6 +36,8 @@ class AddressTest extends TestCase
         /** @var \App\Student $student | typehinting */
         $student = factory(Student::class)->create();
 
+        $this->assertCount(1, Student::all());
+
         //make an address with the student's id
         /** @var \App\Address $address | typehinting */
         $address = factory(Address::class)->make(['student_id' => $student->id]);
@@ -133,7 +135,7 @@ class AddressTest extends TestCase
     }
 
     /** @test */
-    public function test_street_number_must_be_integer()
+    public function test_street_number_could_contains_string()
     {
         $this->actingAsUser();
 
@@ -143,16 +145,17 @@ class AddressTest extends TestCase
 
         //make an address with the student's id
         /** @var \App\Address $address | typehinting */
-        $address = factory(Address::class)->make(['student_id' => $student->id, 'street_number' => Str::random(1)]);
+        $address = factory(Address::class)->make(['student_id' => $student->id, 'street_number' => '3/b' ]);
 
         $this->post('/addresses',$address->toArray());
 
+
         //then it should be in the database
-        $this->assertCount(0, Address::all() );
+        $this->assertCount(1, Address::all() );
     }
 
     /** @test */
-    public function test_street_number_must_be_positive()
+    public function test_zip_required()
     {
         $this->actingAsUser();
 
@@ -162,9 +165,10 @@ class AddressTest extends TestCase
 
         //make an address with the student's id
         /** @var \App\Address $address | typehinting */
-        $address = factory(Address::class)->make(['student_id' => $student->id, 'street_number' => '-1' ]);
+        $address = factory(Address::class)->make(['student_id' => $student->id, 'zip' => 1 ]);
 
         $this->post('/addresses',$address->toArray());
+
 
         //then it should be in the database
         $this->assertCount(0, Address::all() );
