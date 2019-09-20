@@ -25,7 +25,7 @@ class AddressFormRequest extends FormRequest
     {
         return [
             'street_name' => 'required',
-            'street_number' => 'required|integer',
+            'street_number' => 'required|integer|max:100000',
             'zip' => 'required|integer|min:1000|max:9999',
             'city' => 'required',
             'siblings_num' => 'required|integer',

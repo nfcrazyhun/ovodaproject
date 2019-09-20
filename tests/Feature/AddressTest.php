@@ -5,6 +5,7 @@ namespace Tests\Feature;
 use App\Address;
 use App\Student;
 use App\User;
+use Illuminate\Support\Str;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -29,46 +30,20 @@ class AddressTest extends TestCase
     /** @test */
     public function test_user_can_create_address()
     {
-        //create and login a user
         $this->actingAsUser();
 
         //create a student
         /** @var \App\Student $student | typehinting */
         $student = factory(Student::class)->create();
 
-        //create an address with the student's id
+        //make an address with the student's id
         /** @var \App\Address $address | typehinting */
-        $address = factory(Address::class)->create(['student_id' => $student->id]);
+        $address = factory(Address::class)->make(['student_id' => $student->id]);
 
-        //check if database has record with the student's id
-        $this->assertDatabaseHas('address', ['student_id' => $student->id]);
-    }
+        $this->post('/addresses',$address->toArray());
 
-    /** @test */
-    public function test_user_can_show_address()
-    {
-        //create and login a user
-        $this->actingAsUser();
-
-        //create a student
-        /** @var \App\Student $student | typehinting */
-        $student = factory(Student::class)->create();
-
-        //create an address with the student's id
-        /** @var \App\Address $address | typehinting */
-        $address = factory(Address::class)->create(['student_id' => $student->id]);
-
-        //returns the correct view
-        $this->get('/addresses/'.$address->id)->assertViewIs('addresses.show');
-
-        //page found with the given id
-        $this->get('/addresses/'.$address->id)->assertStatus(200);
-
-        //controller passed 'address' variable with compact();
-        $this->get('/addresses/'.$address->id)->assertViewHas('address');
-
-        //and you can see the street name too
-        $this->get('/addresses/'.$address->id)->assertSee($address->street_name);
+        //then it should be in the database
+        $this->assertCount(1, Address::all() );
     }
 
     /** @test */
@@ -90,6 +65,8 @@ class AddressTest extends TestCase
         $this->patch('/addresses/'.$address->id, $address->toArray());
 
         $this->assertDatabaseHas('address', ['street_name' => $address->street_name]);
+
+        $this->assertCount(1, Student::all() );
     }
 
     /** @test */
@@ -111,65 +88,86 @@ class AddressTest extends TestCase
         $this->delete('/addresses/'.$address->id);
 
         $this->assertDatabaseMissing('address', ['id' => $address->id]);
+
+        $this->assertCount(0, Address::all() );
     }
 
-    /** @test  */
-    public function test_guest_cannot_create_an_address()
-    {
-        //guest got redirected
-        $this->get('/addresses/create')->assertStatus(302);
-    }
+    /* --------------------------- VALIDATION TESTS --------------------------- */
 
-    /** @test  */
-    public function test_guest_cannot_show_an_address()
+    /** @test */
+    public function test_street_name_required()
     {
+        $this->actingAsUser();
+
         //create a student
         /** @var \App\Student $student | typehinting */
         $student = factory(Student::class)->create();
 
-        //create an address with the student's id
+        //make an address with the student's id
         /** @var \App\Address $address | typehinting */
-        $address = factory(Address::class)->create(['student_id' => $student->id]);
+        $address = factory(Address::class)->make(['student_id' => $student->id, 'street_name' => '']);
 
-        //guest got redirected
-        $this->get('/addresses/'.$address->id)->assertStatus(302);
+        $this->post('/addresses',$address->toArray());
+
+        //then it should be in the database
+        $this->assertCount(0, Address::all() );
     }
 
-    /** @test  */
-    public function test_guest_cannot_modify_an_address()
+    /** @test */
+    public function test_street_number_required()
     {
+        $this->actingAsUser();
+
         //create a student
         /** @var \App\Student $student | typehinting */
         $student = factory(Student::class)->create();
 
-        //create an address with the student's id
+        //make an address with the student's id
         /** @var \App\Address $address | typehinting */
-        $address = factory(Address::class)->create(['student_id' => $student->id]);
+        $address = factory(Address::class)->make(['student_id' => $student->id, 'street_number' => '']);
 
-        $address->street_name = 'dinaladinn';
+        $this->post('/addresses',$address->toArray());
 
-        //try to modify but cot redirected
-        $this->patch('/addresses/'.$address->id, $address->toArray())->assertStatus(302);
+        //then it should be in the database
+        $this->assertCount(0, Address::all() );
     }
 
-    /** @test  */
-    public function test_quest_cannot_delete_address()
+    /** @test */
+    public function test_street_number_must_be_integer()
     {
+        $this->actingAsUser();
+
         //create a student
         /** @var \App\Student $student | typehinting */
         $student = factory(Student::class)->create();
 
-        //create an address with the student's id
+        //make an address with the student's id
         /** @var \App\Address $address | typehinting */
-        $address = factory(Address::class)->create(['student_id' => $student->id]);
+        $address = factory(Address::class)->make(['student_id' => $student->id, 'street_number' => Str::random(1)]);
 
-        $this->assertDatabaseHas('address', ['student_id' => $student->id]);
+        $this->post('/addresses',$address->toArray());
 
-        //guest got redirected
-        $this->delete('/addresses/'.$address->id)->assertRedirect();
+        //then it should be in the database
+        $this->assertCount(0, Address::all() );
+    }
 
-        //check if is no deletion happened
-        $this->assertDatabaseHas('address', ['id' => $address->id]);
+    /** @test */
+    public function test_street_number_must_be_positive()
+    {
+        $this->actingAsUser();
+
+        //create a student
+        /** @var \App\Student $student | typehinting */
+        $student = factory(Student::class)->create();
+
+        //make an address with the student's id
+        /** @var \App\Address $address | typehinting */
+        $address = factory(Address::class)->make(['student_id' => $student->id, 'street_number' => '-1' ]);
+
+        $this->post('/addresses',$address->toArray());
+
+        //then it should be in the database
+        $this->assertCount(0, Address::all() );
     }
 
 }

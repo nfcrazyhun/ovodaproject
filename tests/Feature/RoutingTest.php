@@ -74,6 +74,33 @@ class RoutingTest extends TestCase
         $this->get('/students/'.$student->id)->assertSee($student->first_name);
     }
 
+    /** @test */
+    public function test_user_can_show_address()
+    {
+        //create and login a user
+        $this->actingAsUser();
+
+        //create a student
+        /** @var \App\Student $student | typehinting */
+        $student = factory(Student::class)->create();
+
+        //create an address with the student's id
+        /** @var \App\Address $address | typehinting */
+        $address = factory(Address::class)->create(['student_id' => $student->id]);
+
+        //returns the correct view
+        $this->get('/addresses/'.$address->id)->assertViewIs('addresses.show');
+
+        //page found with the given id
+        $this->get('/addresses/'.$address->id)->assertStatus(200);
+
+        //controller passed 'address' variable with compact();
+        $this->get('/addresses/'.$address->id)->assertViewHas('address');
+
+        //and you can see the street name too
+        $this->get('/addresses/'.$address->id)->assertSee($address->street_name);
+    }
+
 
     /** @test */
     public function test_guest_cannot_shown_a_student()
@@ -98,6 +125,63 @@ class RoutingTest extends TestCase
         $this->get('/addresses/'.$address->id)->assertStatus(302);
     }
 
+    /** @test  */
+    public function test_guest_cannot_visit_address_create_page()
+    {
+        //guest got redirected
+        $this->get('/addresses/create')->assertStatus(302);
+    }
 
+    /** @test  */
+    public function test_guest_cannot_show_an_address()
+    {
+        //create a student
+        /** @var \App\Student $student | typehinting */
+        $student = factory(Student::class)->create();
+
+        //create an address with the student's id
+        /** @var \App\Address $address | typehinting */
+        $address = factory(Address::class)->create(['student_id' => $student->id]);
+
+        //guest got redirected
+        $this->get('/addresses/'.$address->id)->assertStatus(302);
+    }
+
+    /** @test  */
+    public function test_guest_cannot_modify_an_address()
+    {
+        //create a student
+        /** @var \App\Student $student | typehinting */
+        $student = factory(Student::class)->create();
+
+        //create an address with the student's id
+        /** @var \App\Address $address | typehinting */
+        $address = factory(Address::class)->create(['student_id' => $student->id]);
+
+        $address->street_name = 'dinaladinn';
+
+        //try to modify but cot redirected
+        $this->patch('/addresses/'.$address->id, $address->toArray())->assertStatus(302);
+    }
+
+    /** @test  */
+    public function test_quest_cannot_delete_address()
+    {
+        //create a student
+        /** @var \App\Student $student | typehinting */
+        $student = factory(Student::class)->create();
+
+        //create an address with the student's id
+        /** @var \App\Address $address | typehinting */
+        $address = factory(Address::class)->create(['student_id' => $student->id]);
+
+        $this->assertDatabaseHas('address', ['student_id' => $student->id]);
+
+        //guest got redirected
+        $this->delete('/addresses/'.$address->id)->assertRedirect();
+
+        //check if is no deletion happened
+        $this->assertDatabaseHas('address', ['id' => $address->id]);
+    }
 
 }
