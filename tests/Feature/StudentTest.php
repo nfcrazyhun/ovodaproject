@@ -66,10 +66,8 @@ class StudentTest extends TestCase
     /** @test */
     public function test_user_can_create_a_student()
     {
-        //create a new user
-        $user = factory(User::class)->create();
-        //login with it
-        $this->actingAs($user);
+        $this->actingAsUser();
+
         /** @var \App\Student $student | typehinting */
         //create a student instance
         $student = factory(Student::class)->create(['first_name' => 'acme']);
@@ -83,10 +81,8 @@ class StudentTest extends TestCase
     /** @test */
     public function test_user_can_create_student_with_address()
     {
+        $this->actingAsUser();
 
-        $user = factory(User::class)->create();
-
-        $this->actingAs($user);
 
         /** @var \App\Student $student | typehinting */
         $student = factory(Student::class)->create(['first_name' => 'acme']);
@@ -105,10 +101,10 @@ class StudentTest extends TestCase
     }
 
     /** @test */
-    public function test_user_can_modify_a_student(){
-        $user = factory(User::class)->create();
+    public function test_user_can_modify_a_student()
+    {
+        $this->actingAsUser();
 
-        $this->actingAs($user);
 
         /** @var \App\Student $student | typehinting */
         $student = factory(Student::class)->create(['first_name' => 'acme']);
@@ -121,10 +117,10 @@ class StudentTest extends TestCase
     }
 
     /** @test */
-    public function test_user_can_delete_a_student(){
-        $user = factory(User::class)->create();
+    public function test_user_can_delete_a_student()
+    {
+        $this->actingAsUser();
 
-        $this->actingAs($user);
 
         /** @var \App\Student $student | typehinting */
         $student = factory(Student::class)->create(['first_name' => 'delta']);
@@ -138,14 +134,23 @@ class StudentTest extends TestCase
     /** @test */
     public function test_user_can_show_a_student()
     {
-        //create and login a user
-        $user = factory(User::class)->create();
-        $this->actingAs($user);
+        $this->actingAsUser();
+
 
         /** @var \App\Student $student | typehinting */
         $student = factory(Student::class)->create(['first_name' => 'quadrofolioli']);
 
         $this->get('/students/'.$student->id)->assertSee('quadrofolioli');
+    }
+
+    /**
+     *  Mini-method for shorting create user and login with it
+     */
+    private function actingAsUser()
+    {
+        //create and login a user
+        $user = factory(User::class)->create();
+        $this->actingAs($user);
     }
 
 

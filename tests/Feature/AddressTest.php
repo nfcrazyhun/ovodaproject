@@ -23,8 +23,7 @@ class AddressTest extends TestCase
     public function test_user_can_create_address()
     {
         //create and login a user
-        $user = factory(User::class)->create();
-        $this->actingAs($user);
+        $this->actingAsUser();
 
         //create a student
         /** @var \App\Student $student | typehinting */
@@ -42,8 +41,7 @@ class AddressTest extends TestCase
     public function test_user_can_show_address()
     {
         //create and login a user
-        $user = factory(User::class)->create();
-        $this->actingAs($user);
+        $this->actingAsUser();
 
         //create a student
         /** @var \App\Student $student | typehinting */
@@ -70,8 +68,7 @@ class AddressTest extends TestCase
     public function test_user_can_modify_address()
     {
         //create and login a user
-        $user = factory(User::class)->create();
-        $this->actingAs($user);
+        $this->actingAsUser();
 
         //create a student
         /** @var \App\Student $student | typehinting */
@@ -92,8 +89,7 @@ class AddressTest extends TestCase
     public function test_user_can_delete_address()
     {
         //create and login a user
-        $user = factory(User::class)->create();
-        $this->actingAs($user);
+        $this->actingAsUser();
 
         //create a student
         /** @var \App\Student $student | typehinting */
@@ -167,6 +163,16 @@ class AddressTest extends TestCase
 
         //check if is no deletion happened
         $this->assertDatabaseHas('address', ['id' => $address->id]);
+    }
+
+    /**
+     *  Mini-method for shorting create user and login with it
+     */
+    private function actingAsUser()
+    {
+        //create and login a user
+        $user = factory(User::class)->create();
+        $this->actingAs($user);
     }
 
 }
