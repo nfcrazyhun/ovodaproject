@@ -24,7 +24,6 @@ class StudentTest extends TestCase
         $this->actingAs($user);
     }
 
-
     /* --------------------------- TESTS --------------------------- */
 
     /** @test */

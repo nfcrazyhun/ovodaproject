@@ -13,11 +13,18 @@ class AddressTest extends TestCase
 {
     use RefreshDatabase;
 
+
     /**
-     * A basic feature test example.
-     *
-     * @return void
+     *  Mini-method for shorting create user and login with it
      */
+    private function actingAsUser()
+    {
+        //create and login a user
+        $user = factory(User::class)->create();
+        $this->actingAs($user);
+    }
+
+    /* --------------------------- TESTS --------------------------- */
 
     /** @test */
     public function test_user_can_create_address()
@@ -163,16 +170,6 @@ class AddressTest extends TestCase
 
         //check if is no deletion happened
         $this->assertDatabaseHas('address', ['id' => $address->id]);
-    }
-
-    /**
-     *  Mini-method for shorting create user and login with it
-     */
-    private function actingAsUser()
-    {
-        //create and login a user
-        $user = factory(User::class)->create();
-        $this->actingAs($user);
     }
 
 }
