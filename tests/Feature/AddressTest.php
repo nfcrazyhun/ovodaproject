@@ -174,4 +174,137 @@ class AddressTest extends TestCase
         $this->assertCount(0, Address::all() );
     }
 
+    /** @test */
+    public function test_zip_must_be_integer()
+    {
+        $this->actingAsUser();
+
+        //create a student
+        /** @var \App\Student $student | typehinting */
+        $student = factory(Student::class)->create();
+
+        //make an address with the student's id
+        /** @var \App\Address $address | typehinting */
+        $address = factory(Address::class)->make(['student_id' => $student->id, 'zip' => Str::random(5) ]);
+
+        $this->post('/addresses',$address->toArray());
+
+        //then it should be in the database
+        $this->assertCount(0, Address::all() );
+    }
+
+    /** @test */
+    public function test_zip_must_be_min_1000()
+    {
+        $this->actingAsUser();
+
+        //create a student
+        /** @var \App\Student $student | typehinting */
+        $student = factory(Student::class)->create();
+
+        //make an address with the student's id
+        /** @var \App\Address $address | typehinting */
+        $address = factory(Address::class)->make(['student_id' => $student->id, 'zip' => 999 ]);
+
+        $this->post('/addresses',$address->toArray());
+
+        //then it should be in the database
+        $this->assertCount(0, Address::all() );
+    }
+
+    /** @test */
+    public function test_zip_must_be_max_9999()
+    {
+        $this->actingAsUser();
+
+        //create a student
+        /** @var \App\Student $student | typehinting */
+        $student = factory(Student::class)->create();
+
+        //make an address with the student's id
+        /** @var \App\Address $address | typehinting */
+        $address = factory(Address::class)->make(['student_id' => $student->id, 'zip' => 10000 ]);
+
+        $this->post('/addresses',$address->toArray());
+
+        //then it should be in the database
+        $this->assertCount(0, Address::all() );
+    }
+
+    /** @test */
+    public function test_city_required()
+    {
+        $this->actingAsUser();
+
+        //create a student
+        /** @var \App\Student $student | typehinting */
+        $student = factory(Student::class)->create();
+
+        //make an address with the student's id
+        /** @var \App\Address $address | typehinting */
+        $address = factory(Address::class)->make(['student_id' => $student->id, 'city' => '' ]);
+
+        $this->post('/addresses',$address->toArray());
+
+        //then it should be in the database
+        $this->assertCount(0, Address::all() );
+    }
+
+    /** @test */
+    public function test_siblings_num_required()
+    {
+        $this->actingAsUser();
+
+        //create a student
+        /** @var \App\Student $student | typehinting */
+        $student = factory(Student::class)->create();
+
+        //make an address with the student's id
+        /** @var \App\Address $address | typehinting */
+        $address = factory(Address::class)->make(['student_id' => $student->id, 'siblings_num' => '' ]);
+
+        $this->post('/addresses',$address->toArray());
+
+        //then it should be in the database
+        $this->assertCount(0, Address::all() );
+    }
+
+    /** @test */
+    public function test_siblings_num_must_be_integer()
+    {
+        $this->actingAsUser();
+
+        //create a student
+        /** @var \App\Student $student | typehinting */
+        $student = factory(Student::class)->create();
+
+        //make an address with the student's id
+        /** @var \App\Address $address | typehinting */
+        $address = factory(Address::class)->make(['student_id' => $student->id, 'siblings_num' => Str::random(1) ]);
+
+        $this->post('/addresses',$address->toArray());
+
+        //then it should be in the database
+        $this->assertCount(0, Address::all() );
+    }
+
+    /** @test */
+    public function test_siblings_num_max_127()
+    {
+        $this->actingAsUser();
+
+        //create a student
+        /** @var \App\Student $student | typehinting */
+        $student = factory(Student::class)->create();
+
+        //make an address with the student's id
+        /** @var \App\Address $address | typehinting */
+        $address = factory(Address::class)->make(['student_id' => $student->id, 'siblings_num' => 128 ]);
+
+        $this->post('/addresses',$address->toArray());
+
+        //then it should be in the database
+        $this->assertCount(0, Address::all() );
+    }
+
 }

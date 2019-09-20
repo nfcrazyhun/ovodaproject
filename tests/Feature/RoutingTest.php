@@ -98,6 +98,7 @@ class RoutingTest extends TestCase
         $this->get('/addresses/'.$address->id)->assertViewHas('address');
 
         //and you can see the street name too
+        /** Sometimes throws error because the street name contains " ' " quotation marks, shoot you faker->streetname !!!  */
         $this->get('/addresses/'.$address->id)->assertSee($address->street_name);
     }
 
