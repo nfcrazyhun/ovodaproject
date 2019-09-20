@@ -27,8 +27,8 @@ class StudentFormRequest extends FormRequest
             'first_name' => 'required|min:3',
             'last_name' => 'required|min:3',
             'sign' => 'image',
-            'group' => 'required|integer|min:1',
-            'age' => 'required|integer|min:1',
+            'group' => 'required|integer',
+            'age' => 'required|integer',
         ];
     }
 }
