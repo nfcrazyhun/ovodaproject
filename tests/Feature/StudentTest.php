@@ -98,7 +98,7 @@ class StudentTest extends TestCase
         $this->actingAsUser();
 
         /** @var \App\Student $student | typehinting */
-        $student = factory(Student::class)->make(['first_name' => Str::random(1)]);
+        $student = factory(Student::class)->make(['first_name' => Str::random(16)]);
 
         $this->post('/students',$student->toArray());
 
@@ -125,7 +125,7 @@ class StudentTest extends TestCase
         $this->actingAsUser();
 
         /** @var \App\Student $student | typehinting */
-        $student = factory(Student::class)->make(['last_name' => Str::random(1)]);
+        $student = factory(Student::class)->make(['last_name' => Str::random(16)]);
 
         $this->post('/students',$student->toArray());
 

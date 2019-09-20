@@ -189,7 +189,7 @@ class AddressTest extends TestCase
 
         //make an address with the student's id
         /** @var \App\Address $address | typehinting */
-        $address = factory(Address::class)->make(['student_id' => $student->id, 'zip' => Str::random(5) ]);
+        $address = factory(Address::class)->make(['student_id' => $student->id, 'zip' => Str::random(16) ]);
 
         $this->post('/addresses',$address->toArray());
 
@@ -286,7 +286,7 @@ class AddressTest extends TestCase
 
         //make an address with the student's id
         /** @var \App\Address $address | typehinting */
-        $address = factory(Address::class)->make(['student_id' => $student->id, 'siblings_num' => Str::random(1) ]);
+        $address = factory(Address::class)->make(['student_id' => $student->id, 'siblings_num' => Str::random(16) ]);
 
         $this->post('/addresses',$address->toArray());
 
