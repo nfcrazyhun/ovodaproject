@@ -27,6 +27,7 @@ class AddressTest extends TestCase
 
     /* --------------------------- TESTS --------------------------- */
 
+    /* == Test crud == */
     /** @test */
     public function test_user_can_create_address()
     {
@@ -96,6 +97,7 @@ class AddressTest extends TestCase
 
     /* --------------------------- VALIDATION TESTS --------------------------- */
 
+    /* == street name == */
     /** @test */
     public function test_street_name_required()
     {
@@ -115,6 +117,7 @@ class AddressTest extends TestCase
         $this->assertCount(0, Address::all() );
     }
 
+    /* == street number == */
     /** @test */
     public function test_street_number_required()
     {
@@ -154,6 +157,7 @@ class AddressTest extends TestCase
         $this->assertCount(1, Address::all() );
     }
 
+    /* == zip == */
     /** @test */
     public function test_zip_required()
     {
@@ -231,6 +235,7 @@ class AddressTest extends TestCase
         $this->assertCount(0, Address::all() );
     }
 
+    /* == city == */
     /** @test */
     public function test_city_required()
     {
@@ -250,6 +255,7 @@ class AddressTest extends TestCase
         $this->assertCount(0, Address::all() );
     }
 
+    /* == siblings num == */
     /** @test */
     public function test_siblings_num_required()
     {

@@ -26,6 +26,7 @@ class StudentTest extends TestCase
 
     /* --------------------------- TESTS --------------------------- */
 
+    /* == Test crud == */
     /** @test */
     public function test_user_can_create_a_student()
     {
@@ -77,6 +78,7 @@ class StudentTest extends TestCase
 
     /* --------------------------- VALIDATION TESTS --------------------------- */
 
+    /* == first name == */
     /** @test */
     public function test_first_name_required()
     {
@@ -103,6 +105,7 @@ class StudentTest extends TestCase
         $this->assertCount(0, Student::all() );
     }
 
+    /* == last name == */
     /** @test */
     public function test_last_name_required()
     {
@@ -129,6 +132,7 @@ class StudentTest extends TestCase
         $this->assertCount(0, Student::all() );
     }
 
+    /* == group == */
     /** @test */
     public function test_group_required()
     {
@@ -142,6 +146,7 @@ class StudentTest extends TestCase
         $this->assertCount(0, Student::all() );
     }
 
+    /* == age == */
     /** @test */
     public function test_age_required()
     {
