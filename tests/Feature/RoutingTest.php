@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Address;
 use App\Student;
 use App\User;
 use Tests\TestCase;
@@ -71,6 +72,30 @@ class RoutingTest extends TestCase
         $student = factory(Student::class)->create();
 
         $this->get('/students/'.$student->id)->assertSee($student->first_name);
+    }
+
+
+    /** @test */
+    public function test_guest_cannot_shown_a_student()
+    {
+        /** @var \App\Student $student | typehinting */
+        $student = factory(Student::class)->create();
+
+        $this->get('/students/'.$student->id)->assertStatus(302);
+    }
+
+    /** @test */
+    public function test_guest_cannot_shown_an_address()
+    {
+        /** @var \App\Student $student | typehinting */
+        $student = factory(Student::class)->create();
+
+        /** @var \App\Address $address | typehinting */
+        $address = factory(Address::class)->create(['student_id' => $student->id]);
+
+        $this->assertCount(1,Address::all());
+
+        $this->get('/addresses/'.$address->id)->assertStatus(302);
     }
 
 
